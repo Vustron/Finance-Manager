@@ -1,3 +1,5 @@
+import CustomToaster from '@/providers/customToastProvider';
+import { SheetProvider } from '@/providers/sheetProvider';
 import QueryProvider from '@/providers/queryProvider';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
@@ -20,7 +22,11 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang='en'>
 				<body className={inter.className}>
-					<QueryProvider>{children}</QueryProvider>
+					<QueryProvider>
+						<SheetProvider />
+						<CustomToaster />
+						{children}
+					</QueryProvider>
 				</body>
 			</html>
 		</ClerkProvider>

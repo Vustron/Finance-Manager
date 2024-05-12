@@ -3,10 +3,10 @@
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { usePathname, useRouter } from 'next/navigation';
 import NavButton from '@/components/shared/navbutton';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import { Button } from '@/components/ui/button';
 import { useMedia } from 'react-use';
 import { useState } from 'react';
-import { Menu } from 'lucide-react';
 
 const routes = [
 	{
@@ -56,7 +56,7 @@ const Navigation = () => {
 						size='sm'
 						className='font-normal bg-white/10 hover:bg-white/20 hover:text-white text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none  focus:bg-white/30 transition'
 					>
-						<Menu className='size-4' />
+						<GiHamburgerMenu className='size-5 text-white' />
 					</Button>
 				</SheetTrigger>
 
