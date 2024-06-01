@@ -25,7 +25,6 @@ import {
 import { useConfirm } from '@/hooks/accounts/misc/use-Confirm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useMountedState } from 'react-use';
 import { Trash } from 'lucide-react';
 import * as React from 'react';
 
@@ -44,8 +43,6 @@ export function DataTable<TData, TValue>({
 	onDelete,
 	disabled,
 }: DataTableProps<TData, TValue>) {
-	const isMounted = useMountedState();
-
 	const [ConfirmDialog, confirm] = useConfirm(
 		'Are you sure?',
 		'You are about to perform a bulk delete'
@@ -75,8 +72,6 @@ export function DataTable<TData, TValue>({
 			rowSelection,
 		},
 	});
-
-	if (!isMounted) return null;
 
 	return (
 		<div>

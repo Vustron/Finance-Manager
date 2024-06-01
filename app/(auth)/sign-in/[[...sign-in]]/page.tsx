@@ -13,11 +13,11 @@ export default function SignInPage() {
 					</p>
 				</div>
 
-				<ClerkLoaded>
-					<div className='flex items-center justify-center mt-8'>
+				<div className='flex items-center justify-center mt-8'>
+					<ClerkLoaded>
 						<SignIn path='/sign-in' />
-					</div>
-				</ClerkLoaded>
+					</ClerkLoaded>
+				</div>
 
 				<ClerkLoading>
 					<Loader2 className='animate-spin text-muted-foreground' />
