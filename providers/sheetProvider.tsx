@@ -1,5 +1,6 @@
 'use client';
 
+import { NewTransactionSheet } from '@/components/sheets/new-Transaction-Sheet';
 import { EditCategorySheet } from '@/components/sheets/edit-Category-Sheet';
 import { NewCategorySheet } from '@/components/sheets/new-Category-Sheet';
 import { EditAccountSheet } from '@/components/sheets/edit-Account-Sheet';
@@ -14,8 +15,11 @@ export const SheetProvider = () => {
 		<>
 			<EditAccountSheet />
 			<EditCategorySheet />
+
 			<NewAccountSheet />
 			<NewCategorySheet />
+
+			<NewTransactionSheet />
 		</>
 	);
 };
