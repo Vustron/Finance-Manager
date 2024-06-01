@@ -1,4 +1,5 @@
 import { prettyJSON } from 'hono/pretty-json';
+import transactions from './transactions';
 import categories from './categories';
 import { handle } from 'hono/vercel';
 import accounts from './accounts';
@@ -15,7 +16,8 @@ app.use(prettyJSON());
 // init routes
 const routes = app
 	.route('/accounts', accounts)
-	.route('/categories', categories);
+	.route('/categories', categories)
+	.route('/transactions', transactions);
 
 // init route handlers
 export const GET = handle(app);
