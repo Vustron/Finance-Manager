@@ -3,13 +3,15 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
+import CategoryColumn from './category-Column';
+import { Badge } from '@/components/ui/badge';
+import AccountColumn from './account-Column';
+import { formatCurrency } from '@/lib/utils';
 import { ArrowUpDown } from 'lucide-react';
 import { InferResponseType } from 'hono';
 import { client } from '@/lib/hono';
 import { Actions } from './actions';
 import { format } from 'date-fns';
-import { formatCurrency } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 
 export type ResponseType = InferResponseType<
 	typeof client.api.transactions.$get,
@@ -72,7 +74,13 @@ export const columns: ColumnDef<ResponseType>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			return <span>{row.original.category}</span>;
+			return (
+				<CategoryColumn
+					id={row.original.id}
+					category={row.original.category}
+					categoryId={row.original.categoryId}
+				/>
+			);
 		},
 	},
 	{
@@ -130,7 +138,12 @@ export const columns: ColumnDef<ResponseType>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			return <span>{row.original.account}</span>;
+			return (
+				<AccountColumn
+					account={row.original.account}
+					accountId={row.original.accountId}
+				/>
+			);
 		},
 	},
 	{
