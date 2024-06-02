@@ -3,8 +3,8 @@
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { usePathname, useRouter } from 'next/navigation';
 import NavButton from '@/components/shared/navbutton';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { Button } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
 import { useMedia } from 'react-use';
 import { useState } from 'react';
 
@@ -53,10 +53,10 @@ const Navigation = () => {
 					<Button
 						asChild
 						variant='outline'
-						size='sm'
-						className='font-normal bg-white/10 hover:bg-white/20 hover:text-white text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none  focus:bg-white/30 transition'
+						size='icon'
+						className='font-normal bg-white/10 hover:bg-white/20 hover:text-white text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none focus:bg-white/30 transition'
 					>
-						<GiHamburgerMenu className='size-5 text-white' />
+						<Menu className='size-5 text-white' />
 					</Button>
 				</SheetTrigger>
 

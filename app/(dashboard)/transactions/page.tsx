@@ -8,9 +8,38 @@ import { DataTable } from '@/components/tables/data-Table';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Plus, Loader2 } from 'lucide-react';
+import UploadButton from './upload-Button';
+import ImportCard from './importCard';
 import { columns } from './columns';
+import { useState } from 'react';
+
+enum VARIANTS {
+	LIST = 'LIST',
+	IMPORT = 'IMPORT',
+}
+
+const INITIAL_IMPORT_RESULTS = {
+	data: [],
+	errors: [],
+	meta: [],
+};
 
 export default function TransactionsPage() {
+	// init state
+	const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST);
+	const [importResults, setImportResults] = useState(INITIAL_IMPORT_RESULTS);
+
+	// init on upload
+	const onUpload = (results: typeof INITIAL_IMPORT_RESULTS) => {
+		setImportResults(results);
+		setVariant(VARIANTS.IMPORT);
+	};
+
+	const onCancelImport = () => {
+		setImportResults(INITIAL_IMPORT_RESULTS);
+		setVariant(VARIANTS.LIST);
+	};
+
 	// add new accounts custom hook
 	const newTransaction = useNewTransaction();
 	// get accounts custom hook
@@ -41,6 +70,18 @@ export default function TransactionsPage() {
 		);
 	}
 
+	if (variant === VARIANTS.IMPORT) {
+		return (
+			<>
+				<ImportCard
+					data={importResults.data}
+					onCancel={onCancelImport}
+					onSubmit={() => []}
+				/>
+			</>
+		);
+	}
+
 	return (
 		<div className='max-w-screen-2xl mx-auto w-full pb-10 -mt-24'>
 			<Card className='border-none drop-shadow-sm'>
@@ -48,10 +89,14 @@ export default function TransactionsPage() {
 					<CardTitle className='text-xl line-clamp-1'>
 						Transaction History
 					</CardTitle>
-					<Button size='sm' onClick={newTransaction.onOpen}>
-						<Plus className='size-4 mr-2' />
-						Add new
-					</Button>
+
+					<div className='flex items-center gap-x-2'>
+						<Button size='sm' onClick={newTransaction.onOpen}>
+							<Plus className='size-4 mr-2' />
+							Add new
+						</Button>
+						<UploadButton onUpload={onUpload} />
+					</div>
 				</CardHeader>
 
 				<CardContent>
