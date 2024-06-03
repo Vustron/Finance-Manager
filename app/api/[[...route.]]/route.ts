@@ -3,6 +3,7 @@ import transactions from "./transactions";
 import categories from "./categories";
 import { handle } from "hono/vercel";
 import accounts from "./accounts";
+import summary from "./summary";
 import { Hono } from "hono";
 
 // init runtime
@@ -17,7 +18,8 @@ app.use(prettyJSON());
 const routes = app
   .route("/accounts", accounts)
   .route("/categories", categories)
-  .route("/transactions", transactions);
+  .route("/transactions", transactions)
+  .route("/summary", summary);
 
 // init route handlers
 export const GET = handle(app);
