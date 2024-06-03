@@ -1,23 +1,23 @@
-import { prettyJSON } from 'hono/pretty-json';
-import transactions from './transactions';
-import categories from './categories';
-import { handle } from 'hono/vercel';
-import accounts from './accounts';
-import { Hono } from 'hono';
+import { prettyJSON } from "hono/pretty-json";
+import transactions from "./transactions";
+import categories from "./categories";
+import { handle } from "hono/vercel";
+import accounts from "./accounts";
+import { Hono } from "hono";
 
 // init runtime
-export const runtime = 'edge';
+export const runtime = "edge";
 
 // init hono
-const app = new Hono().basePath('/api');
+const app = new Hono().basePath("/api");
 // use pretty json
 app.use(prettyJSON());
 
 // init routes
 const routes = app
-	.route('/accounts', accounts)
-	.route('/categories', categories)
-	.route('/transactions', transactions);
+  .route("/accounts", accounts)
+  .route("/categories", categories)
+  .route("/transactions", transactions);
 
 // init route handlers
 export const GET = handle(app);
