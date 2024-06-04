@@ -1,9 +1,9 @@
-"use client";
+import DataGrid from "@/components/dashboard/data-Grid";
 
 export default function DashboardPage() {
   return (
-    <div>
-      <h1>Hello world</h1>
+    <div className="mx-auto -mt-24 w-full max-w-screen-2xl pb-10">
+      <DataGrid />
     </div>
   );
 }

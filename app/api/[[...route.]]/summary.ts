@@ -1,8 +1,8 @@
-import { accounts, categories, transactions } from "@/db/schema";
+import { calculatePercentageChange, fillMissingDays } from "@/lib/utils";
 import { and, eq, gte, lte, sql, sum, lt, desc } from "drizzle-orm";
+import { accounts, categories, transactions } from "@/db/schema";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { subDays, parse, differenceInDays } from "date-fns";
-import { calculatePercentageChange, fillMissingDays } from "@/lib/utils";
 import { zValidator } from "@hono/zod-validator";
 import { db } from "@/db/drizzle";
 import { Hono } from "hono";
@@ -80,8 +80,8 @@ const app = new Hono().get(
 
     const [lastPeriod] = await fetchFinancialData(
       auth.userId,
-      startDate,
-      endDate,
+      lastPeriodStart,
+      lastPeriodEnd,
     );
 
     const incomeChange = calculatePercentageChange(
