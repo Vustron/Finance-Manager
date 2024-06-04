@@ -34,9 +34,11 @@ const app = new Hono().get(
     const defaultTo = new Date();
     const defaultFrom = subDays(defaultTo, 30);
 
-    const startDate = from ? parse(from, "yyy-MM-dd", new Date()) : defaultFrom;
+    const startDate = from
+      ? parse(from, "yyyy-MM-dd", new Date())
+      : defaultFrom;
 
-    const endDate = to ? parse(to, "yyy-MM-dd", new Date()) : defaultTo;
+    const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
 
     const periodLength = differenceInDays(endDate, startDate) + 1;
 
