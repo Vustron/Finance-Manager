@@ -43,10 +43,10 @@ const app = new Hono()
 
       // start date filter
       const startDate = from
-        ? parse(from, "yyy-MM-dd", new Date())
+        ? parse(from, "yyyy-MM-dd", new Date())
         : defaultFrom;
       // end date filter
-      const endDate = to ? parse(to, "yyy-MM-dd", new Date()) : defaultTo;
+      const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
 
       // fetch accounts from neon db
       const data = await db
