@@ -13,7 +13,7 @@ const Message = () => {
         {user?.firstName} 👋
       </h2>
       <p className="text-sm text-[#89b6fd] lg:text-base">
-        This is your financial overview Report
+        This is your financial Overview Report
       </p>
     </div>
   );

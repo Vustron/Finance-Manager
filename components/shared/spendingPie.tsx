@@ -5,32 +5,23 @@ import {
   SelectValue,
   SelectItem,
 } from "@/components/ui/select";
-
-import {
-  FileSearch,
-  Loader2,
-  AreaChart,
-  LineChart,
-  BarChart3,
-} from "lucide-react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import LineVariant from "@/components/shared/lineVariant";
-import AreaVariant from "@/components/shared/areaVariant";
-import BarVariant from "@/components/shared/barVariant";
+import { FileSearch, Loader2, PieChart, Radar, Target } from "lucide-react";
+import RadialVariant from "@/components/shared/radialVariant";
+import RadarVariant from "@/components/shared/radarVariant";
+import PieVariant from "@/components/shared/pieVariant";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
 
 type Props = {
   data?: {
-    date: string;
-    income: number;
-    expenses: number;
+    name: string;
+    value: number;
   }[];
 };
 
-const Chart = ({ data = [] }: Props) => {
-  const [chartType, setChartType] = useState("area");
+const SpendingPie = ({ data = [] }: Props) => {
+  const [chartType, setChartType] = useState("pie");
 
   const onChangeType = (type: string) => {
     // TODO: add paywall
@@ -40,7 +31,7 @@ const Chart = ({ data = [] }: Props) => {
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader className="flex justify-between space-y-2 lg:flex-row lg:items-center lg:space-y-0">
-        <CardTitle className="line-clamp-1 text-xl">Transactions</CardTitle>
+        <CardTitle className="line-clamp-1 text-xl">Categories</CardTitle>
 
         <Select defaultValue={chartType} onValueChange={onChangeType}>
           <SelectTrigger className="h-9 rounded-md px-3 lg:w-auto">
@@ -48,24 +39,24 @@ const Chart = ({ data = [] }: Props) => {
           </SelectTrigger>
 
           <SelectContent>
-            <SelectItem value="area">
+            <SelectItem value="pie">
               <div className="flex items-center">
-                <AreaChart className="mr-2 size-4 shrink-0" />
-                <p className="line-clamp-1">Area Chart</p>
+                <PieChart className="mr-2 size-4 shrink-0" />
+                <p className="line-clamp-1">Pie Chart</p>
               </div>
             </SelectItem>
 
-            <SelectItem value="line">
+            <SelectItem value="radar">
               <div className="flex items-center">
-                <LineChart className="mr-2 size-4 shrink-0" />
-                <p className="line-clamp-1">Line Chart</p>
+                <Radar className="mr-2 size-4 shrink-0" />
+                <p className="line-clamp-1">Radar Chart</p>
               </div>
             </SelectItem>
 
-            <SelectItem value="bar">
+            <SelectItem value="radial">
               <div className="flex items-center">
-                <BarChart3 className="mr-2 size-4 shrink-0" />
-                <p className="line-clamp-1">Bar Chart</p>
+                <Target className="mr-2 size-4 shrink-0" />
+                <p className="line-clamp-1">Radial Chart</p>
               </div>
             </SelectItem>
           </SelectContent>
@@ -82,9 +73,9 @@ const Chart = ({ data = [] }: Props) => {
           </div>
         ) : (
           <>
-            {chartType === "line" && <LineVariant data={data} />}
-            {chartType === "area" && <AreaVariant data={data} />}
-            {chartType === "bar" && <BarVariant data={data} />}
+            {chartType === "pie" && <PieVariant data={data} />}
+            {chartType === "radar" && <RadarVariant data={data} />}
+            {chartType === "radial" && <RadialVariant data={data} />}
           </>
         )}
       </CardContent>
@@ -92,7 +83,7 @@ const Chart = ({ data = [] }: Props) => {
   );
 };
 
-export const ChartLoading = () => {
+export const SpendingPieLoading = () => {
   return (
     <Card className="border-none drop-shadow-sm">
       <CardHeader className="flex justify-between space-y-2 lg:flex-row lg:items-center lg:space-y-0">
@@ -109,4 +100,4 @@ export const ChartLoading = () => {
   );
 };
 
-export default Chart;
+export default SpendingPie;
